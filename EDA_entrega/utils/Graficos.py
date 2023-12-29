@@ -22,7 +22,7 @@ def barras_frecuencias(df, columna, mostrar_valores=False, giro=90, relativas=Fa
         ax_absolutas = ax
 
     # Tamaño de la serie
-    serie_absolutas = df[columna].value_counts()  # Define la variable antes de la condición
+    serie_absolutas = df[columna].value_counts()  # Acotamos el numero de barras si queremos
     
     if tamaño != False and type(tamaño) == int:
         serie_absolutas = serie_absolutas.head(tamaño)
@@ -42,7 +42,8 @@ def barras_frecuencias(df, columna, mostrar_valores=False, giro=90, relativas=Fa
     # Frecuencias Relativas (solo si relativas=True)
     if relativas:
         # Tamaño de la serie
-        serie_relativas = df[columna].value_counts(normalize=True)  # Define la variable antes de la condición
+        serie_relativas = df[columna].value_counts(normalize=True)  # Acotamos el numero de barras si queremos
+
         
         if tamaño != False and type(tamaño) == int:
             serie_relativas = serie_relativas.head(tamaño)
@@ -64,4 +65,20 @@ def barras_frecuencias(df, columna, mostrar_valores=False, giro=90, relativas=Fa
     plt.show()
 
 
+def histo_box(df,col_cat,col_num):
+    # Crear la figura y los ejes
+    fig, (ax_hist, ax_box) = plt.subplots(1, 2, figsize=(20, 10), gridspec_kw={'width_ratios': [2, 1]})
 
+    # Graficar histograma y KDE en el primer eje
+    sns.histplot(df[col_num], bins=40, kde=True, ax=ax_hist, hue=df[col_cat])
+    ax_hist.set_title(f'Histograma con KDE ({col_num})')
+
+    # Graficar boxplot en el segundo eje
+    sns.boxplot(x=df[col_cat], y=df[col_num], ax=ax_box)
+    ax_box.set_title(f'Boxplot ({col_num} por {col_cat})')
+
+    # Ajustar el diseño para que no haya superposiciones
+    plt.tight_layout()
+
+    # Mostrar el gráfico
+    plt.show()
