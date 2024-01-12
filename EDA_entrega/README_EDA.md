@@ -3,7 +3,7 @@
 En este EDA, se pretende hacer una valoración del impacto del COVID-19, en las carreteras urbanas de España desde el 2020 hasta 2022, incluídos.
 
 Los datos han sido obtenidos a partir de la DGT, y el INE. 
-El análisis ha sido realizado con Python( Jupyter Notebook).
+El análisis ha sido realizado en Python (la memoria en Jupyter Notebook) con la ayuda de varios archivos.
 
 Esta carpeta contiene:
 * Presentación del EDA, en powerpoint.
