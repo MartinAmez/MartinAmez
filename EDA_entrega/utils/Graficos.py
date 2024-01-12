@@ -4,9 +4,6 @@ import seaborn as sns
 import pandas as pd
 import numpy as np
 
-import seaborn as sns
-import matplotlib.pyplot as plt
-
 def barras_frecuencias(df, columna, mostrar_valores=False, giro=90, relativas=False, tamaño=False):
     # Montamos el cuadro de 2 figuras por fila si se requieren frecuencias relativas
     if relativas:
@@ -132,7 +129,7 @@ def outliers(df,col_num,k=1.5):
           f'Numero de datos por encima: {outliers_sup}, numero de datos por debajo: {outliers_inf}.\n'
           f'Numero de datos fuera de límites: {num_outliers}')
 
-def grupal_num_disc(df,columnas):
+def grupal_num_disc(df, columnas, bin_width=1):
     num_columnas = len(columnas)
 
     # Determinar el número de filas y columnas para subplots
@@ -147,7 +144,7 @@ def grupal_num_disc(df,columnas):
     else:
         rows, cols = 1, num_columnas
 
-    fig, ax = plt.subplots(rows, cols, figsize=(num_columnas*4, 10), gridspec_kw={'width_ratios': [1] * cols})
+    fig, ax = plt.subplots(rows, cols, figsize=(num_columnas * 4, 10), gridspec_kw={'width_ratios': [1] * cols})
 
     # Asegurarse de que 'ax' sea siempre un array, incluso si solo hay un subplot
     if rows == 1 and cols == 1:
@@ -158,25 +155,30 @@ def grupal_num_disc(df,columnas):
         row_index, col_index = divmod(i, cols)
         current_ax = ax[row_index, col_index]
 
-        bins = [0, 1, 10, 20, 30, 40, 50]
+        # Calcular los límites de los bins
+        min_value = 0
+        max_value = 25
+        bins = np.arange(min_value, max_value + bin_width, bin_width)
 
-        # Crear un gráfico de barras para cada valor en la columna
-        sns.histplot(df[columna], bins=bins, kde=True, ax=current_ax, color="mediumslateblue", edgecolor="darkslateblue", alpha=0.5,
-                     line_kws={'linewidth': '2'}).lines[0].set_color("darkslateblue")
-        current_ax.set_title(f'Distribución de {columna}')
-        current_ax.set_xlabel(columna)
-        current_ax.set_ylabel('Frecuencia')
-        current_ax.set_ylim(0, 100)
-        current_ax.set_xlim(0, 30)
+        # Llamar a la función 'histplot' con la columna específica del DataFrame
+        sns.histplot(df[columna], kde=True, bins=bins, color="indianred", edgecolor="brown", alpha=0.7, 
+                     line_kws={'color': 'red', 'linewidth': '2'}, kde_kws={'bw_method': 0.8}, ax=current_ax)
         
+        # Configuraciones y títulos específicos para cada subgráfica
+        current_ax.set_title(f'Distribución de {columna}')
+        current_ax.set_xlabel('Número de Fallecidos')
+        current_ax.set_ylabel('Frecuencia')
+        
+        # Fijar los límites del eje y para todas las gráficas
+        current_ax.set_ylim(0, 200)
+        
+        # Fijar los límites del eje x para todas las gráficas
+        current_ax.set_xlim(min_value, max_value)
 
-    # Ajustar el diseño para que no haya superposiciones
     plt.tight_layout()
-
-    # Mostrar el gráfico
     plt.show()
 
-def fallecidos(df, kde=False ,medio_trans=None):
+def fallecidos(df, kde=False ,bin=20, medio_trans=None):
     fig, ax = plt.subplots(1, 1, figsize=(20, 10))
 
     if medio_trans is None:
@@ -184,15 +186,78 @@ def fallecidos(df, kde=False ,medio_trans=None):
     else:
         columna = f"{medio_trans} Fallecidos"
     if kde:
-        sns.histplot(df[columna], kde=True, color="indianred", edgecolor="brown", alpha=0.7, line_kws={'color': 'red', 'linewidth': '2'},kde_kws={'bw_method': 0.8})
+        sns.histplot(df[columna], kde=True, bins=bin, color="indianred", edgecolor="brown", alpha=0.7, line_kws={'color': 'red', 'linewidth': '2'},kde_kws={'bw_method': 0.8})
     else:
-        sns.histplot(df[columna], kde=False, color="indianred",edgecolor="brown", alpha=0.7)
+        sns.histplot(df[columna], kde=False,bins=bin, color="indianred",edgecolor="brown", alpha=0.7)
 
     ax.set_title(f'Distribución de {columna}')
     ax.set_xlabel('Número de Fallecidos')
     ax.set_ylabel('Frecuencia')
     ax.set_ylim(0,200)
+    ax.set_xlim(1,50)
 
     plt.show()
 
+def plot_cat_num(df, categorical_col, numerical_col, show_values=False, measure='mean'):
+    # Calcula la medida de tendencia central (mean o median)
+    if measure == 'median':
+        grouped_data = df.groupby(categorical_col)[numerical_col].median()
+    elif measure=="sum":
+        grouped_data = df.groupby(categorical_col)[numerical_col].sum()
+    else:
+        # Por defecto, usa la media
+        grouped_data = df.groupby(categorical_col)[numerical_col].mean()
+
+    # Ordena los valores
+    grouped_data = grouped_data.sort_values(ascending=False)
+
+    # Si hay más de 5 categorías, las divide en grupos de 5
+    if grouped_data.shape[0] > 5:
+        unique_categories = grouped_data.index.unique()
+        num_plots = int(np.ceil(len(unique_categories) / 5))
+
+        for i in range(num_plots):
+            # Selecciona un subconjunto de categorías para cada gráfico
+            categories_subset = unique_categories[i * 5:(i + 1) * 5]
+            data_subset = grouped_data.loc[categories_subset].reset_index()
+
+            # Crea el gráfico
+            plt.figure(figsize=(20, 10))
+            ax = sns.barplot(x=data_subset[categorical_col], y=data_subset[numerical_col], palette="magma")
+
+            # Añade títulos y etiquetas
+            plt.title(f'Relación entre {categorical_col} y {numerical_col} - Grupo {i + 1}')
+            plt.xlabel(categorical_col)
+            plt.ylabel(f'{measure.capitalize()} de {numerical_col}')
+            plt.xticks(rotation=45)
+
+            # Mostrar valores en el gráfico
+            if show_values:
+                for p in ax.patches:
+                    ax.annotate(f'{p.get_height():.2f}', (p.get_x() + p.get_width() / 2., p.get_height()),
+                                ha='center', va='center', fontsize=10, color='black', xytext=(0, 5),
+                                textcoords='offset points')
+
+            # Muestra el gráfico
+            plt.show()
+    else:
+        # Crea el gráfico para menos de 5 categorías
+        plt.figure(figsize=(20,10))
+        ax = sns.barplot(x=grouped_data.index, y=grouped_data.values, palette="magma")
+
+        # Añade títulos y etiquetas
+        plt.title(f'Relación entre {categorical_col} y {numerical_col}')
+        plt.xlabel(categorical_col)
+        plt.ylabel(f'{measure.capitalize()} de {numerical_col}')
+        plt.xticks(rotation=45)
+
+        # Mostrar valores en el gráfico
+        if show_values:
+            for p in ax.patches:
+                ax.annotate(f'{p.get_height():.2f}', (p.get_x() + p.get_width() / 2., p.get_height()),
+                            ha='center', va='center', fontsize=10, color='black', xytext=(0, 5),
+                            textcoords='offset points')
+
+        # Muestra el gráfico
+        plt.show()
     
