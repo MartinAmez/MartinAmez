@@ -12,7 +12,7 @@ I am a recent graduate from a Data Science bootcamp at The Bridge. My passion fo
 - **Tools and Platforms:** Jupyter Notebooks, Git, SQL
 
 ### 📁 Highlighted Projects:
-- **Project 1: Sentiment Analysis on Social Media:** An exhaustive analysis of social media data to identify sentiments and trends using NLP techniques.
+- **Project 1: Accident rates and road safety on urban roads in Spain:** In this EDA, the aim is to assess the impact of COVID-19 on urban roads in Spain from 2020 to 2022, inclusive. The data have been obtained from the DGT and INE. The analysis has been conducted in Python (the report in Jupyter Notebook) with the help of various files.
 - **Project 2: Sales Prediction:** Development of a machine learning model to predict sales based on historical data and external factors.
 - **Project 3: Interactive Climate Data Visualization:** Creation of interactive dashboards to visualize climate patterns and facilitate decision-making.
 
@@ -40,7 +40,7 @@ Soy un recién graduado de un bootcamp en Data Science impartido por The Bridge.
 - **Herramientas y Plataformas:** Jupyter Notebooks, Git, SQL
 
 ### 📁 Proyectos Destacados:
-- **Proyecto 1: Análisis de Sentimientos en Redes Sociales:** Un análisis exhaustivo de datos de redes sociales para identificar sentimientos y tendencias utilizando técnicas de NLP.
+- **Proyecto 1: Siniestralidad y seguridad vial en vias urbanas en España:** En este EDA, se pretende hacer una valoración del impacto del COVID-19, en las carreteras urbanas de España desde el 2020 hasta 2022, incluídos. Los datos han sido obtenidos a partir de la DGT y el INE. El análisis ha sido realizado en Python (la memoria en Jupyter Notebook) con la ayuda de varios archivos.
 - **Proyecto 2: Predicción de Ventas:** Desarrollo de un modelo de machine learning para predecir ventas basado en datos históricos y factores externos.
 - **Proyecto 3: Visualización Interactiva de Datos Climáticos:** Creación de dashboards interactivos para visualizar patrones climáticos y facilitar la toma de decisiones.
 
