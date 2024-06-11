@@ -13,7 +13,9 @@ I am a recent graduate from a Data Science bootcamp at The Bridge. My passion fo
 
 ### 📁 Highlighted Projects:
 - **Project 1: Accident rates and road safety on urban roads in Spain:** In this EDA, the aim is to assess the impact of COVID-19 on urban roads in Spain from 2020 to 2022, inclusive. The data have been obtained from the DGT and INE. The analysis has been conducted in Python (the report in Jupyter Notebook) with the help of various files.
+  - [EDA GitHub Repository](https://github.com/MartinAmez/MartinAmez/tree/main/EDA_entrega)
 - **Project 2: Spotify Playlist Generator Based on Emotions:** A Spotify playlist generator based on emotions is a project that combines data science, machine learning, and music APIs.
+  - [ML GitHub Repository](https://github.com/MartinAmez/MartinAmez_ML)
 
 
 ### 🎯 Professional Objective:
@@ -41,7 +43,9 @@ Soy un recién graduado de un bootcamp en Data Science impartido por The Bridge.
 
 ### 📁 Proyectos Destacados:
 - **Proyecto 1: Siniestralidad y seguridad vial en vias urbanas en España:** En este EDA, se pretende hacer una valoración del impacto del COVID-19, en las carreteras urbanas de España desde el 2020 hasta 2022, incluídos. Los datos han sido obtenidos a partir de la DGT y el INE. El análisis ha sido realizado en Python (la memoria en Jupyter Notebook) con la ayuda de varios archivos.
+  - [EDA de GitHub](https://github.com/MartinAmez/MartinAmez/tree/main/EDA_entrega)
 - **Proyecto 2: Generador de playlist de Spotify en funcion de las emociones:** Un generador de listas de reproducción de Spotify basado en emociones es un proyecto que combina ciencia de datos, aprendizaje automático y APIs de música.
+  - [ML de GitHub](https://github.com/MartinAmez/MartinAmez_ML)
 
 
 ### 🎯 Objetivo Profesional:
