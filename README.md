@@ -1,6 +1,6 @@
 ## 👋 Hi! I'm Martín
 
-### 🎓 Data Scientist | 🚀 DS The Bridge Graduate | 🐍 Python Enthusiast
+### 🎓 Data Scientist | 🚀 DS The Bridge Graduate | 🐍 Python Lover
 
 I am a recent graduate from a Data Science bootcamp at The Bridge. My passion for data and technology has led me to develop strong skills in data analysis, statistical modeling, and machine learning. Here on my GitHub, I share projects and collaborations that reflect my experience and growth in this exciting field.
 
@@ -30,7 +30,7 @@ To continue learning and applying advanced Data Science techniques to solve real
 
 ## 👋 ¡Hola! Soy Martín
 
-### 🎓 Data Scientist | 🚀 DS The Bridge Graduate | 🐍 Python Enthusiast
+### 🎓 Científico de Datos | 🚀 Graduado con TheBridge | 🐍 Python Lover
 
 Soy un recién graduado de un bootcamp en Data Science impartido por The Bridge. Mi pasión por los datos y la tecnología me ha llevado a desarrollar habilidades sólidas en análisis de datos, modelado estadístico y machine learning. Aquí en mi GitHub, comparto proyectos y colaboraciones que reflejan mi experiencia y crecimiento en este campo emocionante.
 
